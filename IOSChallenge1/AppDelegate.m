@@ -2,11 +2,9 @@
 //  AppDelegate.m
 //  IOSChallenge1
 //
-//  Created by david batic on 8/8/14.
-//  Copyright (c) 2014 moobat. All rights reserved.
-//
 
 #import "AppDelegate.h"
+#import "RootViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +14,18 @@
             
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    RootViewController *rootView = [[RootViewController alloc]initWithNibName:nil bundle:nil];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rootView];
+    
+    [nav.navigationBar setBarTintColor:[UIColor colorWithRed:51.0/255.0 green:102.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    nav.navigationBar.translucent = NO;
+    nav.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    [nav.navigationBar setTintColor:[UIColor whiteColor]];
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil];
+    [nav.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -123,5 +132,11 @@
         }
     }
 }
+
+
+BOOL StringHasText(id object) {
+    return [object isKindOfClass:[NSString class]] && [(NSString*)object length] > 0;
+}
+
 
 @end
